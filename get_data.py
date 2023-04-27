@@ -29,3 +29,4 @@ def get_data():
     # Add SMA and EMA for the close price with a 20-days window
     add_sma_and_ema(data_with_ta, 'close', 20)
     
+    #test comment
