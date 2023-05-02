@@ -1,6 +1,5 @@
 import numpy as np
 import pandas as pd
-from ta.momentum import RSIIndicator
 
 class Asset:
     def __init__(self):
@@ -8,11 +7,13 @@ class Asset:
         self.tax = 0.02
         self.coin = 0
 
-    def buy(self, coin_value):
-        money_in_market = self.money * (1 - self.tax)
+    def buy(self):
+        money_in_market = self.money * (1 - self.tax)  # add conversion AUD -> bitcoin
         self.money = 0
         self.coin = money_in_market / coin_value
 
-    def sell(self, coin_value):
-        self.money = self.coin * coin_value * (1 - self.tax)
+    def sell(self, money_in_market):
+        self.money = money_in_market * (1 - self.tax)  # add conversion bitcoin -> AUD
         self.coin = 0
+
+
