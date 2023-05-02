@@ -1,10 +1,10 @@
 import numpy as np
 import pandas as pd
+from ta.momentum import RSIIndicator
 
 class Asset:
-    def __init__(self, parameters: list):
+    def __init__(self):
         self.money = 100
-        self.parameters = parameters  # => ['sma_9','sma_21','ema_9','ema_21']
         self.tax = 0.02
         self.coin = 0
 
@@ -16,17 +16,18 @@ class Asset:
     def sell(self, money_in_market):
         self.money = money_in_market * (1 - self.tax)  # add conversion bitcoin -> AUD
 
-    def trade(self, data: pd.DataFrame):
+    def trade(self, data: pd.DataFrame, windowsize, highthreshold, lowthreshold):
         in_position = False
-        short_window, long_window = self.parameters
+        rsi = RSIIndicator(data["close"], window=windowsize)
+        data["rsi"] = rsi.rsi()
 
         for i in range(len(data) - 1):
-            if not in_position and data[short_window].iloc[i] < data[long_window].iloc[i] and data[short_window].iloc[i + 1] > data[long_window].iloc[i + 1]:
+            if not in_position and data["rsi"].iloc[i] < lowthreshold:
                 # Buy
                 self.coin = self.buy() / data['close'].iloc[i + 1]
                 in_position = True
                 print(f'Buy at the {i} day')
-            elif in_position and data[short_window].iloc[i] > data[long_window].iloc[i] and data[short_window].iloc[i + 1] < data[long_window].iloc[i + 1]:
+            elif in_position and data["rsi"].iloc[i] > highthreshold:
                 # Sell
                 self.sell(self.coin * data['close'].iloc[i + 1])
                 self.coin = 0
@@ -37,9 +38,5 @@ class Asset:
         if in_position:
             self.sell(self.coin * data['close'].iloc[-1])
             self.coin = 0
-            
 
         return self.money
-
-
-
