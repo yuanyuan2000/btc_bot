@@ -1,13 +1,21 @@
 # README.md
 
-## To start development:
-1.  Clone this repository to your computer
-2.  Open the cloned folder in VS Code
-3.  Open Terminal in VS Code (Terminal > New Terminal)
-4.  Switch to the develop branch in Terminal `git checkout develop` (Or switch the branch in the bottom left corner of VS Code)
+## Files Introduction:
+1. `Asset.py`: file contains the 'Asset' class, which keeps track of an individual's finance throughout trading.
+2. `get_data.py`: file contains the 'get_data' function, which is used to get the bitcoin ohlcv data in 720 days.
+3. `env.yml`: file contains the conda environment information.
+4. `EMA_SMA (baseline).ipynb` file contains the **baseline strategy**, and `RSI (genetic algorithm).ipynb` file contains our **proposed strategy**.
+5. The generated figures will be written into the `figure` folder.
+
+
+## Steps for reproduction of the results:
+1.  Clone this repository to your computer by `git clone <repository url>`
+2.  Switch to the main branch by `git checkout main`
+3.  Open the folder in **VS Code** or **jupyter notebook**
+4.  If you have installed the `ta` and `cxtt` packages, you can skip the step 5 and 6. Otherwise, please follow the step 5 and 6 to create a new conda environment.
 5.  Create a new conda environment and activate it in your local machine by `conda env create -f env.yml` and `conda activate btcbot`
 6.  Setting the VS Code to use the conda environment you just created (**Ctrl + Shift + P > Python: Select Interpreter > btcbot**)
-7.  Run the code in **main.ipynb**
+7.  Run the code in the `EMA_SMA (baseline).ipynb` and `RSI (genetic algorithm).ipynb` files to reproduce the results. (You can run the code by clicking the `Run Cell` button in the top right corner of each cell, or use `Shift + Enter` to run the code in each cell)
 
    
 ## Update some packages during development:
@@ -20,7 +28,3 @@
 2.  If you want to pull the latest code, please use `git pull origin <branch-name>` (You need to set the `origin` url first)
 3.  If you want to create a new branch, please use `git checkout -b <branch-name>` (We use the develop branch as the default development branch, and when we finish a version, we will merge the develop branch to the main branch). Then you can push it to the github by `git push origin <branch-name>`.
 
-## Files
-- Asset file contains the 'Asset' class, which keeps track of an individual's finance throughout trading.
-- The generated figures will be written into the `figure` folder.
-- `EMA_SMA` file contains the baseline strategy, and `RSI` file contains our proposed strategy.
