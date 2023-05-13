@@ -19,3 +19,8 @@
 1.  If you want to push your code, please use `git push origin <branch-name>` after using `git add .` and `git commit -m "<your commit message>"` (You need to set the `origin` url first)
 2.  If you want to pull the latest code, please use `git pull origin <branch-name>` (You need to set the `origin` url first)
 3.  If you want to create a new branch, please use `git checkout -b <branch-name>` (We use the develop branch as the default development branch, and when we finish a version, we will merge the develop branch to the main branch). Then you can push it to the github by `git push origin <branch-name>`.
+
+## Files
+- Asset file contains the 'Asset' class, which keeps track of an individual's finance throughout trading.
+- The generated figures will be written into the `figure` folder.
+- `EMA_SMA` file contains the baseline strategy, and `RSI` file contains our proposed strategy.
